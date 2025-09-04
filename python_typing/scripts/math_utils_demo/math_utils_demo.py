@@ -8,7 +8,7 @@ def safe_divide(a: float, b: float) -> Optional[float]:
         return None
     return a / b
 
-def main():
+def main() -> None:
     print(f"safe_divide(10, 5) = {safe_divide(10, 5)}")
     print(f"safe_divide(10, 0) = {safe_divide(10, 0)}")
 

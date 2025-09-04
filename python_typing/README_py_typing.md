@@ -1,23 +1,33 @@
 # Python Typing — Module Overview
 
-## 🎯 Purpose
+## Purpose
 
 Briefly explain what this module covers.  
 *This module will use the library `mypy` to anaylze a simple function with hints that passes an incorrect argument type.*
 
 ---
 
-## 🧪 Experiments & Demos
+## Experiments & Demos
 
 List scripts, notebooks, or demos here with a 1–2 sentence description.
+
+### Type Mismatch Demo
 
 - `add_demo.py` → Compare add function with `int` vs. `str`.  
 - `add_test.py` → Test function with incorrect types.
 - `error_handle_add_test.py` -> Rewrites the function with proper error handling.  
 
+### Strict Typing Demo
+
+- Added `mypy` as a dev dependency.  In the `pyproject.toml` file, the tool was set to strict (strict = true).
+- A simple function, `safe_divide(a,b)` was created.  The function essentially returns None when dividing by zero and the float in all other cases.
+- The function was created with type assignments as well as return type, making the function pythonic.
+- A second function, `main()` was created to call on the `safe_divide(a,b)` function and pass arguments.
+- The `main()` function did not assign a type to the return, originally.  See Results for remaining discussion on this lab.
+
 ---
 
-## 📈 Results / Findings
+## Results / Findings
 
 ### Type Mismatch Results
 
@@ -64,13 +74,38 @@ Then, the strict mode was removed and run in `mypy` again, which yielded the fol
 Success: no issues found in 1 source file
 ```
 
-The function works as intended, but it is not optimized to be Pythonic.  When the pyproject.toml tools dev dependencies strict mode is set to true, the library checks for pythonic code so merely functional code will not necessarily pass without errors when running the `mypy` library.
+The function works as intended, but it is not optimized to be Pythonic.  When the pyproject.toml tools dev dependencies strict mode is set to true, the library checks for pythonic code so merely functional code will not necessarily pass without errors when running the `mypy` library.  
+
+The errors in m`mypy` output tell us exactly what line is causing the error.  The `safe_divide` function is pythonic, but the `main()` fuction is **NOT**.  In strict mode, every function must have a return type.  There are no attributes within the `main()` function.
+
+**Solution**: Annotate the `main()` function with a return type:
+
+```bash
+from typing import Optional
+
+def safe_divide(a: float, b: float) -> Optional[float]:
+    """Safe divide function"""
+    if b == 0:
+        return None
+    return a / b
+
+def main() -> None:
+    print(f"safe_divide(10, 5) = {safe_divide(10, 5)}")
+    print(f"safe_divide(10, 0) = {safe_divide(10, 0)}")
+
+if __name__ == "__main__":
+    main()
+```
+
+With the above code, the `mypy` yields a *Success* output
+
+
 
 
 
 ---
 
-## 📚 Notes & Takeaways
+## Notes & Takeaways
 
 - Key insights or conclusions from the experiments.
 - What concepts you learned.  
@@ -79,7 +114,7 @@ The function works as intended, but it is not optimized to be Pythonic.  When th
 
 ---
 
-## 🚀 Next Steps
+## Next Steps
 
 - Further experiments to run.
 - Planned experiments or improvements.  
@@ -87,7 +122,7 @@ The function works as intended, but it is not optimized to be Pythonic.  When th
 
 ---
 
-## 📖 References
+## References
 
 - Tutorials, docs, or articles that helped.
 - [Postgres Indexing docs](https://www.postgresql.org/docs/current/indexes.html)
