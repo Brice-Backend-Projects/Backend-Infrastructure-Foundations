@@ -1,0 +1,73 @@
+# Python bytecode and build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+build/
+dist/
+.eggs/
+*.egg
+*.egg-info/
+pip-wheel-metadata/
+pip-log.txt
+
+# Virtual environments (uv, pip, conda)
+.venv/
+venv/
+env/
+ENV/
+.python-venv/
+.pyenv/
+.pyenv_cache/
+.conda/
+.mamba/
+conda-meta/
+conda-bld/
+*.conda
+*.ipynb_checkpoints
+
+# Note: keep uv.lock committed (do NOT ignore)
+
+# Tool caches and reports
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.pyre/
+.pytype/
+.ruff_cache/
+.dmypy.json
+.hypothesis/
+.tox/
+.nox/
+
+# Jupyter and notebooks
+.ipynb_checkpoints/
+.profile_default/
+.ipython/
+
+# IDE: JetBrains (PyCharm, IntelliJ)
+.idea/
+out/
+
+# Editors
+.vscode/
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs and temp
+*.log
+logs/
+tmp/
+temp/
+.cache/
